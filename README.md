@@ -22,7 +22,10 @@ winget install --id Git.Git -e --source winget
 
 ## 手順
 ### Windows
-0. デフォルト設定を利用しない場合、`.env.sample` をコピーして `.env` を作成し、設定値を書き換える
-1. init.bat をダブルクリックする
-2. 以上
+1. ソースコードをZIPファイルでダウンロードし展開する:
+https://github.com/sweshelo/the-highpriestess/archive/refs/heads/main.zip
+
+2. デフォルト設定を利用しない場合、`.env.sample` をコピーして `.env` を作成し、設定値を書き換える
+3. init.bat をダブルクリックする
+4. 以上
 
