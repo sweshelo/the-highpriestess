@@ -14,7 +14,7 @@ services:
       context: ./repo/the-magician
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_SERVER_HOST: "localhost:8080/ws/"
+        NEXT_PUBLIC_SERVER_HOST: ${HOSTNAME}/ws/
         NEXT_PUBLIC_SECURE_CONNECTION: "false"
         NEXT_PUBLIC_SOUNDPATH: "/sound/se"
         NEXT_PUBLIC_IMAGE_SELF_HOSTING: "false"
@@ -26,6 +26,6 @@ services:
     image: nginx:latest
     container_name: nginx
     ports:
-      - 8080:80
+      - $PORT:80
     volumes:
     - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
