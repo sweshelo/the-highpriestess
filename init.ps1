@@ -60,14 +60,33 @@ if ($retryCount -eq $maxRetries) {
     exit 1
 }
 
+# Load .env file if exists, otherwise copy from sample
+if(!(Test-Path .env)) {
+    Copy-Item .env.sample .env
+}
+
+# Read branch settings from .env
+$envContent = Get-Content .env
+$TheFoolBranch = "release"
+$TheMagicianBranch = "main"
+foreach ($line in $envContent) {
+    if ($line -match "^THE_FOOL_BRANCH=(.+)$") {
+        $TheFoolBranch = $Matches[1]
+    }
+    if ($line -match "^THE_MAGICIAN_BRANCH=(.+)$") {
+        $TheMagicianBranch = $Matches[1]
+    }
+}
+Write-Host "Using branches: the-fool=$TheFoolBranch, the-magician=$TheMagicianBranch" -ForegroundColor Cyan
+
 # the-fool
 if (!(test-path repo/the-fool)) {
   git clone https://github.com/sweshelo/the-fool repo/the-fool
 }
 
 Set-Location "$Work/repo/the-fool";
-git switch release
-git pull origin release
+git switch $TheFoolBranch
+git pull origin $TheFoolBranch
 Set-Location $Work
 
 # the-magician
@@ -76,12 +95,12 @@ if (!(test-path repo/the-magician)) {
 }
 
 Set-Location "$Work/repo/the-magician";
-git switch main
-git pull origin main
+git switch $TheMagicianBranch
+git pull origin $TheMagicianBranch
 Set-Location $Work
 
 if(!(test-path .env)) {
-  cp .env.sample .env
+  Copy-Item .env.sample .env
 }
 
 Write-Host "Building Docker images..." -ForegroundColor Cyan
