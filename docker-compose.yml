@@ -5,23 +5,23 @@ services:
       dockerfile: Dockerfile
     container_name: the-fool
     environment:
-      PORT: 5000
+      PORT: 6000
       USE_TLS: false
     ports:
-      - 5000:5000
+      - 6000:6000
   frontend:
     build:
       context: ./repo/the-magician
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_SERVER_HOST: ${HOSTNAME}/ws/
+        NEXT_PUBLIC_SERVER_HOST: "${HOSTNAME}/ws/"
         NEXT_PUBLIC_SECURE_CONNECTION: "false"
         NEXT_PUBLIC_SOUNDPATH: "/sound/se"
         NEXT_PUBLIC_IMAGE_SELF_HOSTING: "false"
         NEXT_PUBLIC_IMAGE_SIZE: "normal"
     container_name: the-magician
     ports:
-      - 3000:3000
+      - 4000:4000
   nginx:
     image: nginx:latest
     container_name: nginx
