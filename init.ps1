@@ -85,6 +85,7 @@ if (!(test-path repo/the-fool)) {
 }
 
 Set-Location "$Work/repo/the-fool";
+git fetch
 git switch $TheFoolBranch
 git pull origin $TheFoolBranch
 Set-Location $Work
@@ -95,6 +96,7 @@ if (!(test-path repo/the-magician)) {
 }
 
 Set-Location "$Work/repo/the-magician";
+git fetch
 git switch $TheMagicianBranch
 git pull origin $TheMagicianBranch
 Set-Location $Work

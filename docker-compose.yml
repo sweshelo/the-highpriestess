@@ -19,13 +19,16 @@ services:
         NEXT_PUBLIC_SOUNDPATH: "/sound/se"
         NEXT_PUBLIC_IMAGE_SELF_HOSTING: "false"
         NEXT_PUBLIC_IMAGE_SIZE: "normal"
+    environment:
+      DISABLE_DISCORD_LOGIN: "true"
+      DISABLE_SUPABASE: "true"
     container_name: the-magician
     ports:
-      - 4000:4000
+      - 4000:3000
   nginx:
     image: nginx:latest
     container_name: nginx
     ports:
       - $PORT:80
     volumes:
-    - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
