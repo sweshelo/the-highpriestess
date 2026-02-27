@@ -29,6 +29,10 @@ winget install --id Git.Git -e --source winget
 
 2. デフォルト設定を利用しない場合、`.env.sample` をコピーして `.env` を作成し、設定値を書き換える
 3. init.bat をダブルクリックする
+
+> [!Important]
+> セキュリティについて警告されることがあります。その場合は画面内の警告文を確認の上、実行を許可してください。
+
 4. http://localhost:8080 にアクセスしてゲームを開始
 
 > [!Note]
